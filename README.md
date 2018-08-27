@@ -1,7 +1,12 @@
 # Vcore project
 
-deprecated from the challenge framework, this project is the main core of the challenge framework project
+vcore project is virtualization project, for dynamically creating vms images and much more using simple python api
 
-it manages virtual machines (based on docker for now using a simple api)
+this project supports async tasks, such as creating the images and running them and the api is very simple.
 
-its been deprecated for more generic usage and purposes.
+its been deprecated from the challenge framework project the current status is work in progress. 
+
+the backends (services) it supports for now are:
+
+  1. docker: create images, run images async.
+  
