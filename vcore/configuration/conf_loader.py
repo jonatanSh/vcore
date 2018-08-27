@@ -5,14 +5,38 @@ from vcore.configuration import settings as _settings  # to not confuse with Set
 BASE_DIR = os.path.dirname(__file__)
 
 
+class SettingsNotFoundException(Exception):
+    def __init__(self, error_message, obj):
+        self.error_message = error_message
+        if type(obj) is dict:
+            try:
+                obj = json.dumps(obj, indent=2)
+            except Exception:
+                pass
+
+        self.obj = obj
+
+    def __str__(self):
+        return "SettingsNotFound: {0}, in {1}".format(self.error_message, self.obj)
+
+
 class ConfigurationObject(object):
     def __init__(self, loaded_configuration):
         self.loaded_configuration = loaded_configuration
 
     def __getattr__(self, item):
-        value = getattr(self.loaded_configuration, item)
-        if type(item) is dict:
-            return ConfigurationObject(item)
+        if type(self.loaded_configuration) is dict:
+            try:
+                value = self.loaded_configuration[item]
+            except Exception:
+                raise SettingsNotFoundException(item, self.loaded_configuration)
+        else:
+            try:
+                value = getattr(self.loaded_configuration, item)
+            except Exception:
+                raise SettingsNotFoundException(item, self.loaded_configuration)
+        if type(value) is dict:
+            return ConfigurationObject(value)
         else:
             return value
 
@@ -20,16 +44,29 @@ class ConfigurationObject(object):
         return self.__getattr__(item)
 
     def __str__(self):
-        return "ConfigurationObject({0})".format(json.dumps(
-            self.loaded_configuration,
-            indent=2
-        ))
+        try:
+            conf = json.dumps(
+                self.loaded_configuration,
+                indent=2
+            )
+        except Exception:
+            conf = self.loaded_configuration
+        return "ConfigurationObject({0})".format(conf)
 
     def __contains__(self, item):
         return item in self.loaded_configuration
 
+    def __iter__(self):
+        for item in self.loaded_configuration:
+            if type(item) is dict:
+                yield ConfigurationObject(item)
+            else:
+                yield item
+
     def items(self):
-        return self.loaded_configuration.items()
+        for key, value in self.loaded_configuration.items():
+            if type(value) is dict:
+                yield key, ConfigurationObject(value)
 
 
 class LazySettings(object):
@@ -53,10 +90,20 @@ class LazySettings(object):
 
     @property
     def runtime(self):
-        return ConfigurationObject(self.runtime)
+        return ConfigurationObject(self._runtime)
 
     def __setattr__(self, key, value):
-        self.runtime[key] = value
+        PROTECTED_ATTARS = [
+            "_runtime",
+            "_plugins",
+        ]
+        if key in PROTECTED_ATTARS:
+            return super(LazySettings, self).__setattr__(key, value)
+
+        if key in self._runtime:
+            return setattr(self._runtime, key, value)
+
+        self._runtime[key] = value
 
 
 Settings = LazySettings()

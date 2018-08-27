@@ -1,10 +1,10 @@
 {
-  "<SERVICE_NAME>": {
+  "docker": {
     "PLUGINS": {
-      "<PLUGIN_PATH>": {
-        "handler": "<PLUGIN_HANDLER_FUNCTION>",
+      "api/plugins/default/test_plugin.py": {
+        "handler": "Handler",
         "routes": [
-          "<URL_ROUTES_FOR_PLUGIN>"
+          ""
         ]
       }
     }
