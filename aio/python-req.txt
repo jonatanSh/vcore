@@ -1,0 +1,7 @@
+django==1.10
+django-easy-rest
+markdown2
+pymongo
+pika
+docker
+

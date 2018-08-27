@@ -1,0 +1,75 @@
+version: '2'
+services:
+  mongo:
+    container_name: "mongo"
+    image: mongo
+    ports:
+      - "27017:27017"
+
+    logging:
+      driver: none
+
+  rabbit:
+    image: rabbitmq:management
+    container_name: "rabbit"
+    environment:
+      RABBITMQ_LOGS: 0
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  docker_host:
+    container_name: "docker-host"
+    image: challenge_framework/docker_host:development
+    volumes:
+      - ../../../challenge-framework:/challenge-framework
+    privileged: true
+    depends_on:
+      - rabbit
+    environment:
+      rabbit_host: "rabbit"
+      mongo_host: "mongo"
+      TREM: "xterm"
+    ports:
+      - "1111:1111"
+
+    working_dir: "/challenge-framework"
+    entrypoint: # entry point should be from bash for pid wait
+      "sh /entry.sh"
+
+
+    links:
+      - rabbit
+      - mongo
+
+  web:
+    container_name: "web-dev"
+    image: challenge_framework/web:development
+    volumes:
+      - ../../../challenge-framework:/challenge-framework
+    depends_on:
+      - mongo
+      - rabbit
+      #- docker_host
+
+    environment:
+      rabbit_host: "rabbit"
+      mongo_host: "mongo"
+      docker_host: "docker_host"
+      TERM: "xterm"
+    ports:
+      - "8000:8000"
+    working_dir: "/challenge-framework"
+    entrypoint: # entry point should be from bash for pid wait
+      - 'python'
+      - 'main.py'
+      - 'runserver'
+      - '0.0.0.0:8000'
+      - '--runner'
+      - "--indexer"
+      - "--web"
+
+    links:
+      - rabbit:rabbit
+      - mongo:mongo
+      - docker_host:docker_host
