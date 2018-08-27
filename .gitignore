@@ -19,5 +19,5 @@ PriorityQueue/terminal.queue
 *node_modules
 package-lock.json
 *.log
-challenge_framework/db.sqlite3-journal
 *.ignore
+*.db

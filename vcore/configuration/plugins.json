@@ -1,0 +1,12 @@
+{
+  "<SERVICE_NAME>": {
+    "PLUGINS": {
+      "<PLUGIN_PATH>": {
+        "handler": "<PLUGIN_HANDLER_FUNCTION>",
+        "routes": [
+          "<URL_ROUTES_FOR_PLUGIN>"
+        ]
+      }
+    }
+  }
+}
