@@ -1,3 +1,12 @@
+from vcore.tasks.api.task_objects import celery
+
+
+@celery.task(name="Builder.handle")
+def handle(*args, **kwargs):
+    return "Builder->handle"
+
+
+"""
 import pika
 import json
 from bson import ObjectId
@@ -115,3 +124,4 @@ class Builder(object):
 
 builder = Builder()
 builder.consume()
+"""

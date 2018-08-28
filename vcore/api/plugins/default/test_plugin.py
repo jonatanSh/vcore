@@ -1,6 +1,6 @@
-from flask_restful import Resource
+from vcore.tasks.api.task_objects import Task
 
 
-class Handler(Resource):
-    def get(self):
-        return {"message": "this is the default plugin create some more complex plugins"}
+class Handler(Task):
+    def task_handle_get(self):
+        return "this task is sync"

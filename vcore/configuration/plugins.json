@@ -1,10 +1,10 @@
 {
   "docker": {
     "PLUGINS": {
-      "api/plugins/default/test_plugin.py": {
-        "handler": "Handler",
+      "api/plugins/docker/builder.py": {
+        "handler": "Builder",
         "routes": [
-          ""
+          "build/<image_name>"
         ]
       }
     }

@@ -3,15 +3,20 @@ import os
 import sys
 from flask import Flask
 from flask_restful import Api
+from vcore.tasks.api.integration import make_celery
+# must import task importer for shared settings.
+from vcore.tasks.tasks_importer import *
 
 logger = logging.getLogger(__file__)
 
 from vcore.configuration.conf_loader import Settings
 
 
-def setup():
-    Settings.flask_app = Flask(__name__)
+def setup(app):
+    Settings.flask_app = app
     Settings.api = Api(Settings.runtime.flask_app)
+    Settings.celery = make_celery(Settings.runtime.flask_app)  # sets up celery
+
     Settings.routes = []
 
     for service_name, service_settings in Settings.plugins.items():
@@ -24,7 +29,7 @@ def setup():
             try:
                 module = __import__(import_name)
             except Exception as error:
-                logging.error("Plugin import error: {0} in {1}".format(error, sys_path))
+                logging.error("Plugin import error: {0} in {1}, import_name = {2}".format(error, sys_path, import_name))
                 sys.path.remove(sys_path)
                 continue
 
@@ -41,7 +46,8 @@ def setup():
                 Settings.runtime.api.add_resource(handler, current_route)
 
 
-def run():
-    setup()
+def run(app):
+    with app.app_context():
+        setup(app)
     logging.info("Routes:\n{0}".format("\n".join(Settings.runtime.routes)))
-    Settings.runtime.flask_app.run(port=Settings.settings.API.port)
+    Settings.runtime.flask_app.run(port=Settings.settings.API.port, debug=Settings.settings.API.debug)

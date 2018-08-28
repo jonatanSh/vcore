@@ -1,3 +1,5 @@
 sqlalchemy
 flask
 flask_restful
+celery
+sqlite

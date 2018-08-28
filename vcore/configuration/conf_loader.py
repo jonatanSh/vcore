@@ -28,12 +28,12 @@ class ConfigurationObject(object):
         if type(self.loaded_configuration) is dict:
             try:
                 value = self.loaded_configuration[item]
-            except Exception:
+            except (Exception, AttributeError):
                 raise SettingsNotFoundException(item, self.loaded_configuration)
         else:
-            try:
+            if hasattr(self.loaded_configuration, item):
                 value = getattr(self.loaded_configuration, item)
-            except Exception:
+            else:
                 raise SettingsNotFoundException(item, self.loaded_configuration)
         if type(value) is dict:
             return ConfigurationObject(value)

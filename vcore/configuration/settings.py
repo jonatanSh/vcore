@@ -9,8 +9,19 @@ DATABASE = {
 
 API = {
     "port": 5002,
+    "debug": True,
 }
 
 LOGGING = {
     "level": logging.DEBUG,
 }
+
+CELERY = {
+    "broker": "amqp://localhost//",
+    "backend": "sqlite:///database.db",
+    "loglevel": "info",
+}
+
+ENABLED_SERVICES = [
+    "docker",
+]
