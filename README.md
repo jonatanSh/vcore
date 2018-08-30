@@ -1,6 +1,6 @@
 # Vcore project
 
-vcore project is virtualization project, for dynamically creating vms images and much more using simple python api
+vcore project is visualization project, for dynamically creating vms images and much more using simple python api
 
 this project supports async tasks, such as creating the images and running them and the api is very simple.
 
