@@ -5,4 +5,4 @@ from vcore.tasks.api.celery import celery_engine
 
 class Provider(Task):
     def task_handle_get(self, request_id):
-        return AsyncResult(request_id, app=celery_engine).state
+        return {"status": AsyncResult(request_id, app=celery_engine).state}

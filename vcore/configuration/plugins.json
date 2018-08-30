@@ -5,7 +5,7 @@
         {
           "handler": "Builder",
           "routes": [
-            "build/<image_name>"
+            "build"
           ]
         }
       ]
