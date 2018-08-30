@@ -10,8 +10,8 @@ for i, task in enumerate(TASKS):
     if i == len(TASKS) - 1:
         strategy = subprocess.call
     print("starting", task)
-    cmd = "celery -A {0}  worker --loglevel={1}".format(task, Settings.settings.CELERY.loglevel)
-    strategy(cmd.split(" "))
+    cmd = ["celery", "-A", task, "worker", "--loglevel={0}".format(Settings.settings.CELERY.loglevel)]
+    strategy(cmd)
 
 
 def clean_up():

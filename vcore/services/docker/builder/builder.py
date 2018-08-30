@@ -1,7 +1,7 @@
-from vcore.tasks.api.task_objects import celery
+from vcore.tasks.api.celery import celery_engine
 
 
-@celery.task(name="Builder.handle")
+@celery_engine.task(name="Builder.handle")
 def handle(*args, **kwargs):
     return "Builder->handle"
 

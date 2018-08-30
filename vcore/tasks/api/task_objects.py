@@ -1,7 +1,4 @@
 from flask_restful import Resource
-from flask import current_app as app
-
-celery = app.config["celery"]
 
 
 class Task(Resource):

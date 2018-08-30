@@ -18,8 +18,9 @@ LOGGING = {
 
 CELERY = {
     "broker": "amqp://localhost//",
-    "backend": "sqlite:///database.db",
+    "backend": "db+sqlite:///database.db",
     "loglevel": "info",
+    "engine_name": "celery_async_engine",
 }
 
 ENABLED_SERVICES = [

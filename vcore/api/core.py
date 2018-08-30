@@ -1,21 +1,15 @@
 import logging
 import os
 import sys
-from flask import Flask
 from flask_restful import Api
-from vcore.tasks.api.integration import make_celery
-# must import task importer for shared settings.
-from vcore.tasks.tasks_importer import *
+from vcore.configuration.conf_loader import Settings
 
 logger = logging.getLogger(__file__)
-
-from vcore.configuration.conf_loader import Settings
 
 
 def setup(app):
     Settings.flask_app = app
     Settings.api = Api(Settings.runtime.flask_app)
-    Settings.celery = make_celery(Settings.runtime.flask_app)  # sets up celery
 
     Settings.routes = []
 

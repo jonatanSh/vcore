@@ -8,5 +8,15 @@
         ]
       }
     }
+  },
+  "api": {
+    "PLUGINS": {
+      "api/plugins/base/request_provider.py": {
+        "handler": "Provider",
+        "routes": [
+          "request/is_done/<request_id>"
+        ]
+      }
+    }
   }
 }
