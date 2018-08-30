@@ -1,22 +1,26 @@
 {
   "docker": {
     "PLUGINS": {
-      "api/plugins/docker/builder.py": {
-        "handler": "Builder",
-        "routes": [
-          "build/<image_name>"
-        ]
-      }
+      "api/plugins/docker/builder.py": [
+        {
+          "handler": "Builder",
+          "routes": [
+            "build/<image_name>"
+          ]
+        }
+      ]
     }
   },
   "api": {
     "PLUGINS": {
-      "api/plugins/base/request_provider.py": {
-        "handler": "Provider",
-        "routes": [
-          "request/is_done/<request_id>"
-        ]
-      }
+      "api/plugins/base/request_provider.py": [
+        {
+          "handler": "Provider",
+          "routes": [
+            "request/is_done/<request_id>"
+          ]
+        }
+      ]
     }
   }
 }
