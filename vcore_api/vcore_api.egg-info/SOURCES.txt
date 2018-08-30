@@ -1,0 +1,7 @@
+setup.py
+vcore_api/__init__.py
+vcore_api.egg-info/PKG-INFO
+vcore_api.egg-info/SOURCES.txt
+vcore_api.egg-info/dependency_links.txt
+vcore_api.egg-info/requires.txt
+vcore_api.egg-info/top_level.txt
