@@ -45,5 +45,6 @@ def setup(app):
 def run(app):
     with app.app_context():
         setup(app)
+
     logging.info("Routes:\n{0}".format("\n".join(Settings.runtime.routes)))
     Settings.runtime.flask_app.run(port=Settings.settings.API.port, debug=Settings.settings.API.debug)

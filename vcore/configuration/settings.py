@@ -10,6 +10,7 @@ DATABASE = {
 API = {
     "port": 5002,
     "debug": True,
+    "upload_folder": os.path.join(BASE_DIR, "uploads")
 }
 
 LOGGING = {
@@ -27,3 +28,12 @@ CELERY = {
 ENABLED_SERVICES = [
     "docker",
 ]
+
+BACKENDS = {
+    "storage": "vcore.api.backends.storage.disk",
+}
+
+DISK_API_SETTINGS = {
+    "directory": API["upload_folder"],
+
+}

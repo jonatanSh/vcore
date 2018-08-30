@@ -20,6 +20,20 @@
             "request/is_done/<request_id>"
           ]
         }
+      ],
+      "api/plugins/base/file_upload.py": [
+        {
+          "handler": "UploadProvider",
+          "routes": [
+            "upload"
+          ]
+        },
+          {
+          "handler": "DownloadProvider",
+          "routes": [
+            "download/<file_id>"
+          ]
+        }
       ]
     }
   }

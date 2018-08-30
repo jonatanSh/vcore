@@ -21,4 +21,5 @@ package-lock.json
 *.log
 *.ignore
 *.db
-*dist/*
+vcore_api/dist/
+*.egg-info
