@@ -1,4 +1,5 @@
 from ..assets.docker.docker_asset_collector import DockerAssetCollector
+from ..assets.base.io import IoAsset
 from .reqeust_handler import RequestHandler
 
 
@@ -11,6 +12,10 @@ class Api(object):
     @property
     def docker(self):
         return DockerAssetCollector(self._requests)
+
+    @property
+    def io(self):
+        return IoAsset(self._requests)
 
     def __str__(self):
         return "VcoreApi({0}:{1})".format(self.host, self.port)

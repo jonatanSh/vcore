@@ -1,4 +1,5 @@
 import json
+from io import BytesIO
 
 
 class ResponseAttributeError(Exception):
@@ -16,7 +17,7 @@ class ResponseAttributeError(Exception):
         return "AttributeError: {0}, in {1}".format(self.error_message, self.obj)
 
 
-class Response(object):
+class JsonResponse(object):
     def __init__(self, response, url, api):
         self.url = url
         self._api = api
@@ -30,7 +31,7 @@ class Response(object):
         if item in [
             "is_done",
         ]:
-            return super(Response, self).__getattribute__(item)
+            return super(JsonResponse, self).__getattribute__(item)
 
         if type(self.response_object) is dict:
             try:
@@ -58,7 +59,7 @@ class Response(object):
             )
         except Exception:
             conf = self.response_object
-        return "Response(url={0},response={1})".format(self.url, conf)
+        return "JsonResponse(url={0},response={1})".format(self.url, conf)
 
     def __contains__(self, item):
         return item in self.response_object
@@ -78,3 +79,28 @@ class Response(object):
         if obj:
             return False
         return True
+
+
+class StreamResponse(object):
+    def __init__(self, response, url, api):
+        self.url = url
+        self._api = api
+        self._status = response.status_code
+
+        try:
+            self.stream = BytesIO(bytes.fromhex(response.json()["hex"]))
+        except:
+            self.stream = BytesIO()
+
+    def seek(self, *args, **kwargs):
+        self.stream.seek(*args, **kwargs)
+
+    def read(self):
+        return self.stream.read()
+
+    def save(self, local_path):
+        with open(local_path, "wb") as local_file:
+            local_file.write(self.read())
+
+    def __str__(self):
+        return "StreamResponse(status={0}, url={1})".format(self._status, self.url)

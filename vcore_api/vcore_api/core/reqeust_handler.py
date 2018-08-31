@@ -1,5 +1,4 @@
 import requests
-from .response import Response
 
 
 class Utils(object):
@@ -31,7 +30,7 @@ class RequestHandler(object):
     def __init__(self, host, port):
         self.base_url = "{0}:{1}".format(host, port)
 
-    def get(self, url, parameters={}):
+    def get(self, url, ResponseObject, parameters={}):
         url = Utils.mk_get_url(url, parameters)
         url = Utils.url_join(self.base_url, url)
-        return Response(response=requests.get(url), url=url, api=self)
+        return ResponseObject(response=requests.get(url), url=url, api=self)
