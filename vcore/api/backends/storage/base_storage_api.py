@@ -1,8 +1,10 @@
 class StorageApiInterface(object):
-    def store_archive(self, local_path):
+    def store_archive(self, local_path=None, stream=None, encoding=None):
         """
         Return the archive id
         :param local_path:
+        :param stream:
+        :param encoding:
         :return:
         """
         raise NotImplemented()

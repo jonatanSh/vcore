@@ -34,3 +34,7 @@ class RequestHandler(object):
         url = Utils.mk_get_url(url, parameters)
         url = Utils.url_join(self.base_url, url)
         return ResponseObject(response=requests.get(url), url=url, api=self)
+
+    def post(self, url, ResponseObject, parameters={}):
+        url = Utils.url_join(self.base_url, url)
+        return ResponseObject(response=requests.post(url=url, data=parameters), url=url, api=self)

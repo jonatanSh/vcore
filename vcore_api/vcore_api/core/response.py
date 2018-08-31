@@ -59,7 +59,7 @@ class JsonResponse(object):
             )
         except Exception:
             conf = self.response_object
-        return "JsonResponse(url={0},response={1})".format(self.url, conf)
+        return "JsonResponse(url={0},status={1},response={2})".format(self.url, self._status, conf)
 
     def __contains__(self, item):
         return item in self.response_object
