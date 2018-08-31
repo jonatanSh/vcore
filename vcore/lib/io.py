@@ -5,7 +5,7 @@ import tempfile
 class TempArchive(object):
     def __init__(self, local_path):
         self.local_path = local_path
-        self.temp_directory = tempfile.tempdir()
+        self.temp_directory = tempfile.mkdtemp()
 
     def __enter__(self):
         shutil.unpack_archive(self.local_path, self.temp_directory)

@@ -22,6 +22,7 @@ class JsonResponse(object):
         self.url = url
         self._api = api
         self._status = response.status_code
+        self._last_is_done = {}
         try:
             self.response_object = response.json()
         except:
@@ -30,6 +31,11 @@ class JsonResponse(object):
     def __getattr__(self, item):
         if item in [
             "is_done",
+            "async_result",
+            "_last_is_done",
+            "_api",
+            "url",
+            "_status",
         ]:
             return super(JsonResponse, self).__getattribute__(item)
 
@@ -44,7 +50,7 @@ class JsonResponse(object):
             else:
                 raise ResponseAttributeError(item, self.response_object)
         if type(value) is dict:
-            return Response(value, self.url, self._api)
+            return JsonResponse(value, self.url, self._api)
         else:
             return value
 
@@ -70,7 +76,8 @@ class JsonResponse(object):
     def is_done(self):
         obj = {}
         if "is_done_url" in self:
-            obj = self._api.get(url=self.is_done_url)
+            obj = self._api.get(url=self.is_done_url, ResponseObject=JsonResponse)
+            self._last_is_done = obj
         if "status" in obj:
             return obj.status in [
                 "SUCCESS",
@@ -79,6 +86,10 @@ class JsonResponse(object):
         if obj:
             return False
         return True
+
+    def async_result(self):
+        if self.is_done():
+            return self._last_is_done
 
 
 class StreamResponse(object):
