@@ -6,7 +6,7 @@ class DockerAssetCollector(Asset):
 
     @property
     def image(self):
-        return Image(self.requests)
+        return Image(self.requests, self.api)
 
     def __str__(self):
         return "\n".join([

@@ -5,7 +5,7 @@
         {
           "handler": "Builder",
           "routes": [
-            "build"
+            "build/<file_id>"
           ]
         }
       ]
@@ -28,7 +28,7 @@
             "upload"
           ]
         },
-          {
+        {
           "handler": "DownloadProvider",
           "routes": [
             "download/<file_id>"

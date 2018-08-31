@@ -16,7 +16,6 @@ class UploadProvider(Task):
         parse.add_argument("ext")
 
         kwargs = parse.parse_args()
-        print(kwargs)
 
         storage_backend = get_backend(API.STORAGE)
         file_id = None

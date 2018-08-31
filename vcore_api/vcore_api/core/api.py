@@ -11,11 +11,11 @@ class Api(object):
 
     @property
     def docker(self):
-        return DockerAssetCollector(self._requests)
+        return DockerAssetCollector(self._requests, self)
 
     @property
     def io(self):
-        return IoAsset(self._requests)
+        return IoAsset(self._requests, self)
 
     def __str__(self):
         return "VcoreApi({0}:{1})".format(self.host, self.port)
