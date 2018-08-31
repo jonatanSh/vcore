@@ -13,15 +13,15 @@ class UploadProvider(Task):
 
         parse.add_argument('stream')
         parse.add_argument('encoding')
+        parse.add_argument("ext")
 
-        args = parse.parse_args()
-        stream = args["stream"]
-        encoding = args["encoding"]
+        kwargs = parse.parse_args()
+        print(kwargs)
 
         storage_backend = get_backend(API.STORAGE)
         file_id = None
         try:
-            file_id = storage_backend.store_archive(stream=stream, encoding=encoding)
+            file_id = storage_backend.store_archive(**kwargs)
         except UnknownEncoding as error:
             api_error(error)
 

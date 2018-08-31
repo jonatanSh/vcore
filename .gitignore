@@ -10,8 +10,10 @@
 __pycache__/
 /tmp
 tmp/
-/Uploads
-Uploads/
+/uploads
+uploads/
+vcore/uploads
+/vcore/uploads
 *.log
 PriorityQueue/terminal.queue
 *.sqlite3

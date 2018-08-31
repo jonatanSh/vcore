@@ -23,8 +23,8 @@ class DiskApi(StorageApiInterface):
         with open(path, "rb") as archive:
             return archive.read()
 
-    def store_archive(self, local_path=None, stream=None, encoding=None):
-        archive_id = str(uuid4())
+    def store_archive(self, local_path=None, stream=None, encoding=None, ext=None):
+        archive_id = str(uuid4()) + ext
         while os.path.exists(archive_id):
             archive_id = str(uuid4())
 

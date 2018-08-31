@@ -35,5 +35,8 @@ BACKENDS = {
 
 DISK_API_SETTINGS = {
     "directory": API["upload_folder"],
+}
 
+BUILDER = {
+    "client_url": "unix://var/run/docker.sock"
 }
