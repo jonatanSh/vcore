@@ -32,9 +32,17 @@ result = request.async_result()
 
 # to use async results:
 
-# this is a string that can be saved for the current session
+# request.request is a string that can be saved for the current session
 task = api.get_task(request.request)
 
 task.is_done() # or task.async_result() # if task is done
 
 ```
+
+# Api methods:
+
+1. api.docker.images.build(<directory>) builds a new image (Async)
+
+2. api.docker.images.list() list images (Sync)
+
+3. api.docker.containers.list(all=False) list containers, for all containers use all=True (Sync)
