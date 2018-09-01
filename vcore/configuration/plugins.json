@@ -8,6 +8,14 @@
             "build/<file_id>"
           ]
         }
+      ],
+      "api/plugins/docker/image_query_service.py": [
+        {
+          "handler": "QueryImagesList",
+          "routes": [
+            "query/images/list"
+          ]
+        }
       ]
     }
   },

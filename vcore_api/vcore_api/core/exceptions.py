@@ -5,3 +5,12 @@ class ApiConnectionError(Exception):
 
     def __str__(self):
         return "ApiConnectionError({0}, {1})".format(self.connection_str, self.details)
+
+
+class GeneralApiError(Exception):
+    def __init__(self, response, details):
+        self.response = response
+        self.details = details
+
+    def __str__(self):
+        return "GeneralApiError(response={0}, details={1})".format(self.response, self.details)
