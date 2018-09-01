@@ -5,11 +5,5 @@ from .image import Image
 class DockerAssetCollector(Asset):
 
     @property
-    def image(self):
+    def images(self):
         return Image(self.requests, self.api)
-
-    def __str__(self):
-        return "\n".join([
-            "DockerAsset sub modules",
-            "   -> image"
-        ])

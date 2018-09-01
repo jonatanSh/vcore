@@ -1,4 +1,6 @@
 import requests
+from urllib3.exceptions import HTTPError
+from .exceptions import ApiConnectionError
 
 
 class Utils(object):
@@ -33,8 +35,16 @@ class RequestHandler(object):
     def get(self, url, ResponseObject, parameters={}):
         url = Utils.mk_get_url(url, parameters)
         url = Utils.url_join(self.base_url, url)
-        return ResponseObject(response=requests.get(url), url=url, api=self)
+        try:
+            response = requests.get(url)
+        except (Exception, ConnectionRefusedError, HTTPError) as error:
+            raise ApiConnectionError(url, details=str(error))
+        return ResponseObject(response=response, url=url, api=self)
 
     def post(self, url, ResponseObject, parameters={}):
         url = Utils.url_join(self.base_url, url)
-        return ResponseObject(response=requests.post(url=url, data=parameters), url=url, api=self)
+        try:
+            response = requests.post(url=url, data=parameters)
+        except (Exception, ConnectionRefusedError, HTTPError) as error:
+            raise ApiConnectionError(url, details=str(error))
+        return ResponseObject(response=response, url=url, api=self)

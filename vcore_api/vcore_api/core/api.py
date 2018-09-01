@@ -19,3 +19,6 @@ class Api(object):
 
     def __str__(self):
         return "VcoreApi({0}:{1})".format(self.host, self.port)
+
+    def __repr__(self):
+        return str(self)
