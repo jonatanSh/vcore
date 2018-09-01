@@ -15,6 +15,18 @@
           "routes": [
             "query/images/list"
           ]
+        },
+        {
+          "handler": "QueryContainersList",
+          "routes": [
+            "query/containers/list"
+          ]
+        },
+        {
+          "handler": "QueryContainersListAlive",
+          "routes": [
+            "query/containers/list/alive"
+          ]
         }
       ]
     }

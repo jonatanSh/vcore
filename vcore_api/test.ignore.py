@@ -14,3 +14,10 @@ while not task.is_done():
 print(task.async_result())
 """
 print(api.docker.images.list())
+
+print("new line")
+print(api.docker.containers.list())
+
+print("new line")
+
+print(api.docker.containers.list(all=True))

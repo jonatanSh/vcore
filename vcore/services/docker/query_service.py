@@ -4,6 +4,8 @@ from vcore.services.docker.lib.engine import docker_engine
 
 class Queries(object):
     LIST_IMAGES = "list_images"
+    LIST_CONTAINERS_ALL = "list_containers_all"
+    LIST_CONTAINERS = "list_containers"
 
 
 class QueryObject(object):
@@ -22,10 +24,29 @@ class QueryObject(object):
             else:
                 return getattr(self, self.specific_query)(*args, **kwargs)
 
-    def list_images(self):
+    @staticmethod
+    def list_images():
         images = []
-        for image in docker_engine.images.list():
+        for image in docker_engine.images.list(all=True):
             images += image.tags
         return {
             "images": images
+        }
+
+    @staticmethod
+    def list_containers_all():
+        containers = []
+        for container in docker_engine.containers.list(all=True):
+            containers.append(container.name)
+        return {
+            "containers": containers
+        }
+
+    @staticmethod
+    def list_containers():
+        containers = []
+        for container in docker_engine.containers.list():
+            containers.append(container.name)
+        return {
+            "containers": containers
         }
