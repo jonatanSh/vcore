@@ -16,7 +16,7 @@ The main purpose of this project is a distributed environment, with http (get/po
 
 Docker api for python already exists but it doesn't support async command execution and distributed services.
 
-This project is built on top of the exciting python docker api and add this functionality.
+This project is built on top of the existing python docker api and add this functionality.
 
 It can be distributed easily, support easy to use http api
 
