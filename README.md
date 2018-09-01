@@ -41,7 +41,7 @@ task.is_done() # or task.async_result() # if task is done
 
 # Api methods:
 
-1. api.docker.images.build(<directory>) builds a new image (Async)
+1. api.docker.images.build(directory) builds a new image (Async)
 
 2. api.docker.images.list() list images (Sync)
 
