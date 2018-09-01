@@ -1,6 +1,7 @@
 from ..assets.docker.docker_asset_collector import DockerAssetCollector
 from ..assets.base.io import IoAsset
 from .reqeust_handler import RequestHandler
+from .response import JsonResponse
 
 
 class Api(object):
@@ -22,3 +23,9 @@ class Api(object):
 
     def __repr__(self):
         return str(self)
+
+    def get_task(self, request_id):
+        done_url = "/api/request/is_done/{0}".format(request_id)
+        response = self._requests.get(done_url, ResponseObject=JsonResponse)
+        response.response_object["is_done_url"] = done_url
+        return response

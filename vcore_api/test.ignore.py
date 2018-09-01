@@ -6,6 +6,9 @@ from time import sleep
 path = os.path.join(os.path.dirname(os.getcwd()), "test_packages", "docker")
 api = Api()
 output = api.docker.images.build(path)
-while not output.is_done():
+print(output)
+
+task = api.get_task(output.request)
+while not task.is_done():
     sleep(1)
-print(output.async_result())
+print(task.async_result())

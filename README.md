@@ -30,8 +30,10 @@ while not request.is_done():
 
 result = request.async_result()
 
+# to use async results:
 
+task = api.get_task(request.request)
 
-
+task.is_done() # or task.async_result() # if task is done
 
 ```
