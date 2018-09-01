@@ -24,12 +24,17 @@ It can be distributed easily, support easy to use http api
 # Api methods:
 
 1. api.docker.images.build(directory) builds a new image (Async)
+    /docker/images/build/<file_id>
+    to upload a file to the server use
+    /api/upload post method
 
 2. api.docker.images.list() list images (Sync)
+    /docker/query/images/list
 
 3. api.docker.containers.list(all=False) list containers, for all containers use all=True (Sync)
-
-
+    /docker/query/containers/list
+    /docker/query/containers/list/alive
+    
 # Basic api (run the framework):
 
 ```python
