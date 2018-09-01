@@ -1,5 +1,5 @@
 from ..base_asset import Asset
-from .image import Image
+from .images import Image
 
 
 class DockerAssetCollector(Asset):

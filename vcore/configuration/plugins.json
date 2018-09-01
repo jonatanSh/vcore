@@ -9,7 +9,7 @@
           ]
         }
       ],
-      "api/plugins/docker/image_query_service.py": [
+      "api/plugins/docker/query_service.py": [
         {
           "handler": "QueryImagesList",
           "routes": [

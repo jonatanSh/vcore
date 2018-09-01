@@ -1,6 +1,6 @@
 from vcore.tasks.api.task_objects import Task
 from vcore.api.plugins.utils import api_base_wrapper
-from vcore.services.docker.query_service.images import QueryObject, Queries
+from vcore.services.docker.query_service import QueryObject, Queries
 
 
 class QueryImagesList(Task):
