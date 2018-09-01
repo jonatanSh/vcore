@@ -9,7 +9,26 @@ its been deprecated from the challenge framework project the current status is w
 the backends (services) it support for now are:
 
   1. docker: create images, run images async.
-  
+
+# Purpose
+
+The main purpose of this project is a distributed environment, with http (get/post api).
+
+Docker api for python already exists but it doesn't support async command execution and distributed services.
+
+This project is built on top of the exciting python docker api and add this functionality.
+
+It can be distributed easily, support easy to use http api
+
+
+# Api methods:
+
+1. api.docker.images.build(directory) builds a new image (Async)
+
+2. api.docker.images.list() list images (Sync)
+
+3. api.docker.containers.list(all=False) list containers, for all containers use all=True (Sync)
+
 
 # Basic api (run the framework):
 
@@ -38,11 +57,3 @@ task = api.get_task(request.request)
 task.is_done() # or task.async_result() # if task is done
 
 ```
-
-# Api methods:
-
-1. api.docker.images.build(directory) builds a new image (Async)
-
-2. api.docker.images.list() list images (Sync)
-
-3. api.docker.containers.list(all=False) list containers, for all containers use all=True (Sync)
