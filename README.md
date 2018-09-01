@@ -32,6 +32,7 @@ result = request.async_result()
 
 # to use async results:
 
+# this is a string that can be saved for the current session
 task = api.get_task(request.request)
 
 task.is_done() # or task.async_result() # if task is done
