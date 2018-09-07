@@ -1,3 +1,8 @@
+try:
+    from __init__ import *
+except ImportError:
+    from .__init__ import *
+
 import subprocess
 from vcore.configuration.conf_loader import Settings
 from vcore.tasks.tasks_importer import TASKS
@@ -11,7 +16,7 @@ for i, task in enumerate(TASKS):
         strategy = subprocess.call
     print("starting", task)
     cmd = ["celery", "-A", task, "worker", "--loglevel={0}".format(Settings.settings.CELERY.loglevel)]
-    strategy(cmd)
+    strategy(cmd, cwd=os.path.join(os.getcwd(), "../../"))
 
 
 def clean_up():
