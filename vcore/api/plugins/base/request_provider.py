@@ -10,13 +10,16 @@ class Provider(Task):
     def task_handle_get(self, request_id):
         task = AsyncResult(request_id, app=celery_engine)
         output = None
-        if task.state in [
-            SUCCESS,
-            FAILURE
-        ]:
+        error = False
+        if task.state == SUCCESS:
             output = task.get(timeout=Settings.settings.CELERY.provider_timeout)
+        if task.state == FAILURE:
+            output = task.traceback
+            error = True
+
         return api_base_wrapper(
             {
                 "status": task.state,
-                "output": output
+                "output": output,
+                "error": error
             })

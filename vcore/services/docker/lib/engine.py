@@ -3,7 +3,7 @@ from vcore.configuration.conf_loader import Settings
 
 
 def create_client():
-    client = docker.DockerClient(base_url='unix://var/run/docker.sock')
+    client = docker.DockerClient(base_url=Settings.settings.DOCKER.client_url)
     Settings.docker_engine = client
 
 

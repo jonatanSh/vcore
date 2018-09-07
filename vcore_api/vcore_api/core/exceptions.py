@@ -14,3 +14,11 @@ class GeneralApiError(Exception):
 
     def __str__(self):
         return "GeneralApiError(response={0}, details={1})".format(self.response, self.details)
+
+
+class IncompatibleObject(Exception):
+    def __init__(self, details):
+        self.details = details
+
+    def __str__(self):
+        return "IncompatibleObject({0})".format(self.details)

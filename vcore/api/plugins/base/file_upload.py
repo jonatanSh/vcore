@@ -1,7 +1,5 @@
 from flask_restful import reqparse
-from werkzeug import datastructures
 from vcore.tasks.api.task_objects import Task
-from vcore.configuration.conf_loader import Settings
 from vcore.api.backends.get_backend import get_backend, API
 from vcore.api.backends.storage.exceptions import UnknownEncoding, FileNotFound
 from vcore.api.plugins.utils import api_base_wrapper, api_error

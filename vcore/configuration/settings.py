@@ -38,6 +38,6 @@ DISK_API_SETTINGS = {
     "directory": API["upload_folder"],
 }
 
-BUILDER = {
-    "client_url": "unix://var/run/docker.sock"
+DOCKER = {
+    "client_url": "tcp://172.16.224.128:2375"  # "unix://var/run/docker.sock"
 }

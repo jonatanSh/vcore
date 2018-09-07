@@ -9,6 +9,14 @@
           ]
         }
       ],
+      "api/plugins/docker/runner.py": [
+        {
+          "handler": "Run",
+          "routes": [
+            "run"
+          ]
+        }
+      ],
       "api/plugins/docker/query_service.py": [
         {
           "handler": "QueryImagesList",

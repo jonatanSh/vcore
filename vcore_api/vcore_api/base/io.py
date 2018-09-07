@@ -1,7 +1,7 @@
 import os
-from ..base_asset import Asset
-from ...core.response import StreamResponse, JsonResponse
-from ...utils import Archive
+from ..assets.base_asset import Asset
+from ..core.response import StreamResponse, JsonResponse
+from ..utils import Archive
 
 
 class IoAsset(Asset):

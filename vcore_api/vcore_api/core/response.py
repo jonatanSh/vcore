@@ -21,12 +21,15 @@ class JsonResponse(object):
     def __init__(self, response, url, api):
         self.url = url
         self._api = api
-        self._status = response.status_code
+        if "status_code" in response:
+            self._status = response.status_code
+        else:
+            self._status = "inner_object"
         self._last_is_done = {}
         try:
             self.response_object = response.json()
         except:
-            self.response_object = {}
+            self.response_object = response
 
     def __getattr__(self, item):
         if item in [

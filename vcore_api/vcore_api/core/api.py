@@ -1,5 +1,5 @@
 from ..assets.docker.docker_asset_collector import DockerAssetCollector
-from ..assets.base.io import IoAsset
+from ..base.io import IoAsset
 from .reqeust_handler import RequestHandler
 from .response import JsonResponse
 
@@ -7,6 +7,8 @@ from .response import JsonResponse
 class Api(object):
     def __init__(self, host="http://localhost", port=5002):
         self.host = host
+        if not host.startswith("http://"):
+            host = "http://{0}".format(host)
         self.port = port
         self._requests = RequestHandler(host=host, port=port)
 
