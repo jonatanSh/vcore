@@ -5,4 +5,4 @@ from vcore.api.plugins.utils import async_request
 
 class Builder(Task):
     def task_handle_get(self, *args, **kwargs):
-        return async_request(build_image.apply_async(args, kwargs))
+        return async_request(build_image.apply_async(args, kwargs, queue="task_builder"))

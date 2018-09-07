@@ -11,11 +11,15 @@ import atexit
 PROCESSES = []
 
 for i, task in enumerate(TASKS):
+    queue = TASKS[task]
     strategy = subprocess.Popen
     if i == len(TASKS) - 1:
         strategy = subprocess.call
-    print("starting", task)
-    cmd = ["celery", "-A", task, "worker", "--loglevel={0}".format(Settings.settings.CELERY.loglevel)]
+    print("starting", task, "startegy", strategy)
+    cmd = ["celery", "-A", task, "worker",
+           "--loglevel={0}".format(Settings.settings.CELERY.loglevel),
+           "--hostname={0}@{1}".format(task, Settings.settings.CELERY.broker),
+           "-Q", queue]
     strategy(cmd, cwd=os.path.join(os.getcwd(), "../../"))
 
 

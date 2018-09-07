@@ -19,7 +19,7 @@ LOGGING = {
 }
 
 CELERY = {
-    "broker": "amqp://localhost//",
+    "broker": "amqp://172.16.224.129//",
     "backend": "db+sqlite:///{0}".format(os.path.join(BASE_DIR, "celery.db")),
     "loglevel": "info",
     "engine_name": "celery_async_engine",

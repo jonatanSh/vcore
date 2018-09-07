@@ -13,4 +13,4 @@ class Run(Task):
         parse.add_argument("ports")
         parse.add_argument("name")
         options = parse.parse_args()
-        return async_request(run.apply_async(args, options))
+        return async_request(run.apply_async(args, options, queue="task_runner"))
