@@ -8,9 +8,10 @@ DATABASE = {
 }
 
 API = {
+    "host": "0.0.0.0",
     "port": 5002,
     "debug": True,
-    "upload_folder": os.path.join(BASE_DIR, "uploads")
+    "upload_folder": os.path.join(BASE_DIR, "uploads"),
 }
 
 LOGGING = {
