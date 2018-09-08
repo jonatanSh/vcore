@@ -26,3 +26,6 @@ package-lock.json
 vcore_api/dist/
 *.egg-info
 *.ignore*
+/dist/
+dist/
+/dist

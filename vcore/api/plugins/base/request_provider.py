@@ -8,18 +8,24 @@ from vcore.configuration.conf_loader import Settings
 
 class Provider(Task):
     def task_handle_get(self, request_id):
-        task = AsyncResult(request_id, app=celery_engine)
-        output = None
-        error = False
-        if task.state == SUCCESS:
-            output = task.get(timeout=Settings.settings.CELERY.provider_timeout)
-        if task.state == FAILURE:
-            output = task.traceback
-            error = True
+        try:
+            task = AsyncResult(request_id, app=celery_engine)
+            output = None
+            error = False
+            if task.state == SUCCESS:
+                output = task.get(timeout=Settings.settings.CELERY.provider_timeout)
+            if task.state == FAILURE:
+                output = task.traceback
+                error = True
 
-        return api_base_wrapper(
-            {
-                "status": task.state,
-                "output": output,
-                "error": error
-            })
+            return api_base_wrapper(
+                {
+                    "status": task.state,
+                    "output": output,
+                    "error": error
+                })
+        except Exception:
+            return {
+                "error": True,
+                "output": "error in task query"
+            }
