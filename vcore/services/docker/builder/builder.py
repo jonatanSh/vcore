@@ -6,9 +6,9 @@ from vcore.lib.utils import local_path
 
 
 @celery_engine.task(name="Builder.build_image", trail=True)
-def build_image(file_id, target):
+def build_image(file_id, tag):
     with TempArchive(local_path(file_id)) as docker_directory:
-        image, output = docker_engine.images.build(path=docker_directory, target=target)
+        image, output = docker_engine.images.build(path=docker_directory, tag=tag)
         output = list(output)[0]
         output_lst = [
 

@@ -8,6 +8,6 @@ class Builder(Task):
     def task_handle_post(self, *args, **kwargs):
         parse = reqparse.RequestParser()
         parse.add_argument('file_id')
-        parse.add_argument("target")
+        parse.add_argument("tag")
         options = parse.parse_args()
         return async_request(build_image.apply_async(args, options, queue="task_builder"))
