@@ -21,6 +21,12 @@ This project is built on top of the existing python docker api and add this func
 It can be distributed easily, support easy to use http api
 
 
+# Api supported languages:
+
+1. python
+
+2. javascript
+
 # Api methods:
 
 1. api.docker.images.build(directory) builds a new image (Async)
