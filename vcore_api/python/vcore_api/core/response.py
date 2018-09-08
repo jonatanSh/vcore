@@ -57,6 +57,12 @@ class JsonResponse(object):
         else:
             return value
 
+    def __setitem__(self, key, value):
+        if type(self.response_object) is dict:
+            self.response_object[key] = value
+        else:
+            setattr(self.response_object, key, value)
+
     def __getitem__(self, item):
         return self.__getattr__(item)
 
