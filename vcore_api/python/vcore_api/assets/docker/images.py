@@ -15,7 +15,7 @@ class Image(Asset):
 
         return self.requests.post("docker/build", ResponseObject=JsonResponse, parameters={
             "file_id": response.file_id,
-            "tag": name
+            "tag": tag
         })
 
     def list(self):
