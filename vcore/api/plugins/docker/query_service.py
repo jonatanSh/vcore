@@ -16,3 +16,8 @@ class QueryContainersList(Task):
 class QueryContainersListAlive(Task):
     def task_handle_get(self, *args, **kwargs):
         return api_base_wrapper(QueryObject(Queries.LIST_CONTAINERS).handle(*args, **kwargs))
+
+
+class QueryContainerInfo(Task):
+    def task_handle_get(self, *args, **kwargs):
+        return api_base_wrapper(QueryObject(Queries.CONTAINER_INFO).handle(*args, **kwargs))

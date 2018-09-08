@@ -29,3 +29,6 @@ class Containers(Asset):
         }
 
         return self.requests.post("docker/run", ResponseObject=JsonResponse, parameters=kwargs)
+
+    def status(self, container):
+        return self.requests.get("docker/query/containers/info/{0}".format(container))

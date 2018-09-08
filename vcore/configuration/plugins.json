@@ -35,6 +35,12 @@
           "routes": [
             "query/containers/list/alive"
           ]
+        },
+        {
+          "handler": "QueryContainerInfo",
+          "routes": [
+            "query/containers/info/<container_name>"
+          ]
         }
       ]
     }

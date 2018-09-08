@@ -6,6 +6,7 @@ class Queries(object):
     LIST_IMAGES = "list_images"
     LIST_CONTAINERS_ALL = "list_containers_all"
     LIST_CONTAINERS = "list_containers"
+    CONTAINER_INFO = "container_info"
 
 
 class QueryObject(object):
@@ -50,3 +51,14 @@ class QueryObject(object):
         return {
             "containers": containers
         }
+
+    @staticmethod
+    def container_info(container):
+        try:
+            container = docker_engine.containers.get(container)
+            if hasattr(container, "attrs"):
+                return container.attrs
+        except Exception as error:
+            return {
+                "container_query_error": str(error)
+            }

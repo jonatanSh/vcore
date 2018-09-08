@@ -10,6 +10,12 @@ the backends (services) it support for now are:
 
   1. docker: create images, run images async.
 
+# Api supported languages:
+
+1. python
+
+2. javascript (partial)
+
 # Purpose
 
 The main purpose of this project is a distributed environment, with http (get/post api).
@@ -21,11 +27,7 @@ This project is built on top of the existing python docker api and add this func
 It can be distributed easily, support easy to use http api
 
 
-# Api supported languages:
 
-1. python
-
-2. javascript
 
 # Api methods:
 
