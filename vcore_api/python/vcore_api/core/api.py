@@ -29,5 +29,8 @@ class Api(object):
     def get_task(self, request_id):
         done_url = "/api/request/is_done/{0}".format(request_id)
         response = self._requests.get(done_url, ResponseObject=JsonResponse)
-        response.response_object["is_done_url"] = done_url
+        try:  # response object might not support item assignment
+            response.response_object["is_done_url"] = done_url
+        except:
+            pass
         return response
