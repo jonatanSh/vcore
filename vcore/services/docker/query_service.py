@@ -53,9 +53,9 @@ class QueryObject(object):
         }
 
     @staticmethod
-    def container_info(container):
+    def container_info(container_name):
         try:
-            container = docker_engine.containers.get(container)
+            container = docker_engine.containers.get(container_name)
             if hasattr(container, "attrs"):
                 return container.attrs
         except Exception as error:
