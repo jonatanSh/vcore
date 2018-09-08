@@ -19,6 +19,7 @@ class IoAsset(Asset):
                     stream = file.read()
         else:
             stream = fp.read()
+            local_path = fp.name
         file_path, ext = os.path.splitext(local_path)
         return self.requests.post(url="api/upload", parameters={
             "stream": stream.hex(),
