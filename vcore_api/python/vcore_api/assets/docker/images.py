@@ -4,7 +4,7 @@ from ...core.exceptions import GeneralApiError
 
 
 class Image(Asset):
-    def build(self, local_path=None, fp=None):
+    def build(self, local_path=None, fp=None, name=None):
         if not fp and not local_path:
             raise Exception("Build requires file pointer (fp), or local path")
 
@@ -13,7 +13,10 @@ class Image(Asset):
         else:
             response = self.api.io.upload(fp=fp)
 
-        return self.requests.get("docker/build/{0}".format(response.file_id), ResponseObject=JsonResponse)
+        return self.requests.post("docker/build", ResponseObject=JsonResponse, parameters={
+            "file_id": response.file_id,
+            "target": name
+        })
 
     def list(self):
         response = self.requests.get("docker/query/images/list", ResponseObject=JsonResponse)

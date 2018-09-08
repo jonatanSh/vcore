@@ -5,7 +5,7 @@
         {
           "handler": "Builder",
           "routes": [
-            "build/<file_id>"
+            "build"
           ]
         }
       ],
