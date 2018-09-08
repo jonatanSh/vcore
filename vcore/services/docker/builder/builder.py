@@ -18,6 +18,6 @@ def build_image(file_id, target):
 
         return {
             "output": output_lst,
-            "image_name": image.tags[0],
-            "id": image.id
+            "id": image.id[image.id.find(":") + 1:],
+
         }
