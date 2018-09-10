@@ -49,6 +49,23 @@ It can be distributed easily, support easy to use http api
 
     /docker/query/containers/list/alive
 
+# Another cool feature is to open an interactive shell.
+
+this feature seem obvious using docker exec -ti but remember the docker environment here is distributed.
+
+the python api supports interactive shell using
+
+```python
+
+from vcore_api import Api
+
+api = Api(host="localhost", port=5002)
+
+# this will open an interactive shell
+api.docker.shell(container_name="my_conatiner")
+
+```
+
 # Basic api (run the framework):
 
 ```python

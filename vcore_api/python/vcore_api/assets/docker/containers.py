@@ -32,3 +32,9 @@ class Containers(Asset):
 
     def status(self, container):
         return self.requests.get("docker/query/containers/info/{0}".format(container), ResponseObject=JsonResponse)
+
+    def remote_exec(self, container, command):
+        return self.requests.post("/docker/execute", parameters={
+            "container": container,
+            "command": command
+        }, ResponseObject=JsonResponse)

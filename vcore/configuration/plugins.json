@@ -9,11 +9,17 @@
           ]
         }
       ],
-      "api/plugins/docker/runner.py": [
+      "api/plugins/docker/containers.py": [
         {
           "handler": "Run",
           "routes": [
             "run"
+          ]
+        },
+        {
+          "handler": "Execute",
+          "routes": [
+            "execute"
           ]
         }
       ],

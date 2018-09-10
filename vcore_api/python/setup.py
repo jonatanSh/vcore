@@ -15,7 +15,7 @@ setup(
     version='0.6',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=["requests"],
+    install_requires=["requests", "eel"],
     license='MIT License',
     description='Vcore python api',
     long_description=README,
