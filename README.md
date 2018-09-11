@@ -6,6 +6,6 @@ this project supports async tasks, such as creating the images and running them 
 
 its been deprecated from the challenge framework project the current status is work in progress. 
 
-fore more read the docs:
-[I'm an inline-style link](https://vcore.readthedocs.io/en/latest/)
+for more read the docs:
+[Read the docs](https://vcore.readthedocs.io/en/latest/)
 
