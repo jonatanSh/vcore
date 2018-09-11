@@ -7,25 +7,21 @@ The main purpose of this project is to support distributed virtual environments
 
 from building the environment to running it.
 
-The api
-=======
-
+API
+^^^
 the project uses a rest api architecture.
 
 currently there is a python package for using the api
 
-`Python api </>`_
+.. toctree::
+    :maxdepth: 2
+
+    vcore_api/index
 
 Vcore
-=====
+^^^^^
+.. toctree::
+    :maxdepth: 2
 
-`Rest api </>`_
-
-Contribute to the vcore project, read the contribution docs.
-
-`Contribute </>`_
-
-`Architecture </>`_
-
-
+    vcore/index
 
