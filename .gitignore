@@ -29,3 +29,6 @@ vcore_api/dist/
 /dist/
 dist/
 /dist
+/build
+build/
+/build/
