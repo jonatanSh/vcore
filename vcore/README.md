@@ -9,7 +9,7 @@ local_settings.py file
 
 ```bash
 
-pip3 install -r requirements.txt
+pip3 install -r installation/requirements.txt
 
 ```
 
