@@ -6,3 +6,7 @@ local_settings.py file
 1. make sure rabbitmq is up and running.
 
 2. configure everything in settings and you are ready to go.
+
+```bash
+python vcore/api/main.py
+```
