@@ -3,6 +3,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+logger = logging.getLogger(__file__)
+
 DATABASE = {
     "connection_string": "sqlite:///database.db",
 }
@@ -41,3 +43,9 @@ DISK_API_SETTINGS = {
 DOCKER = {
     "client_url": "tcp://172.16.224.128:2375"  # "unix://var/run/docker.sock"
 }
+
+try:
+    from vcore.configuration.local_settings import *
+    logger.info("loaded local configuration")
+except Exception:
+    pass
